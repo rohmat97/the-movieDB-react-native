@@ -1,11 +1,10 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from './src/Home';
-import Constants from './src/Constants';
+import Home from './Home';
+import Constants from './Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MovieDetails from './src/Components/MovieDetails';
-
+import MovieDetails from './Components/MovieDetails';
 const Stack = createNativeStackNavigator();
 
 function App() {

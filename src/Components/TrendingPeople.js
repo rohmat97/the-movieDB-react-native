@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {View, Image, FlatList, Text} from 'react-native';
-import {IMAGE_POSTER_URL} from '../config';
 import {GET} from '../Services/API';
 import Styles from '../Styles';
 import Loader from './Loader';
+import {IMAGE_POSTER_URL} from '@env';
 
 const TrendingPeople = props => {
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ const TrendingPeople = props => {
     };
 
     getPeople();
-  }, []);
+  }, [props.isForPage, props.url]);
 
   return (
     <View>

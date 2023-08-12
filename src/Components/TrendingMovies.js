@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {View, Image, FlatList, Text, TouchableOpacity} from 'react-native';
-import {POSTER_IMAGE} from '../config';
 import {GET} from '../Services/API';
 import Styles from '../Styles';
 import Loader from './Loader';
-
+import {POSTER_IMAGE} from '@env';
 const TrendingMovies = props => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState();
@@ -17,7 +16,7 @@ const TrendingMovies = props => {
     };
 
     getMovies();
-  }, []);
+  }, [props.url]);
 
   return (
     <View>

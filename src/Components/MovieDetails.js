@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import {IMAGE_POSTER_URL} from '../config';
 import {GET} from '../Services/API';
 import Styles from '../Styles';
 import Loader from './Loader';
@@ -15,6 +14,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import Constants from '../Constants';
 import TrendingMovies from './TrendingMovies';
 import TrendingPeople from './TrendingPeople';
+import {IMAGE_POSTER_URL} from '@env';
 
 const MovieDetails = props => {
   const [loading, setLoading] = useState(true);
@@ -46,7 +46,9 @@ const MovieDetails = props => {
         <View>
           <View>
             <Image
-              source={{uri: `${IMAGE_POSTER_URL}${details.backdrop_path}`}}
+              source={{
+                uri: `${IMAGE_POSTER_URL}${details?.backdrop_path}`,
+              }}
               style={Styles.imageBg}
             />
           </View>
