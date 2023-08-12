@@ -1,38 +1,30 @@
-import React, {useEffect, useState} from 'react';
-import {View, Image, FlatList, Text, TouchableOpacity} from 'react-native';
-import {GET} from '../Services/API';
+// @ts-nocheck
+import {useGetTrendingMovies} from '@hooks/useGetTrendingMovies';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import Styles from '../Styles';
 import Loader from './Loader';
-import {POSTER_IMAGE} from '@env';
+import React from 'react';
 const TrendingMovies = props => {
-  const [loading, setLoading] = useState(true);
-  const [movies, setMovies] = useState();
+  const [movies, loading] = useGetTrendingMovies();
 
-  useEffect(() => {
-    const getMovies = async () => {
-      const data = await GET(props.url);
-      setMovies(data.results);
-      setLoading(false);
-    };
-
-    getMovies();
-  }, [props.url]);
-
+  if (loading) {
+    return (
+      <View>
+        <Loader />
+      </View>
+    );
+  }
   return (
     <View>
-      {loading ? (
-        <Loader />
-      ) : (
-        <View>
-          <Text style={Styles.heading}>{props.title}</Text>
-          <FlatList
-            keyExtractor={item => item.id}
-            data={movies}
-            horizontal
-            renderItem={item => displayMovies(item, props)}
-          />
-        </View>
-      )}
+      <View>
+        <Text style={Styles.heading}>{props.title}</Text>
+        <FlatList
+          keyExtractor={item => item.id}
+          data={movies}
+          horizontal
+          renderItem={item => displayMovies(item, props)}
+        />
+      </View>
     </View>
   );
 };
@@ -45,7 +37,7 @@ const displayMovies = ({item}, props) => {
       }}
       style={{marginHorizontal: 10}}>
       <Image
-        source={{uri: `${POSTER_IMAGE}${item.poster_path}`}}
+        source={{uri: `${process.env.POSTER_IMAGE}${item.poster_path}`}}
         style={Styles.posterImage}
       />
       <Text style={Styles.movieTitle}>{item.original_title}</Text>

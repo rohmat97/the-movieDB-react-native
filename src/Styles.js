@@ -49,7 +49,6 @@ const Styles = StyleSheet.create({
     fontSize: 28,
     color: Constants.textColor,
     textAlign: 'center',
-    marginTop: -40,
   },
   linkContainer: {
     backgroundColor: Constants.secondaryColor,

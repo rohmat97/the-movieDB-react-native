@@ -1,16 +1,15 @@
-import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+// @ts-nocheck
+import {useApiGetDiscoverMovies} from '@hooks/useApiGetDiscoverMovies';
+import {View} from 'react-native';
 import {SliderBox} from 'react-native-image-slider-box';
 import Constants from '../Constants';
-import {useApiGetDiscoverMovies} from '../Services/API';
+import Loader from './Loader';
+import React from 'react';
+
 const DiscoverMovies = props => {
   const [movies, images, isMovieFetching] = useApiGetDiscoverMovies();
   if (isMovieFetching) {
-    return (
-      <View>
-        <ActivityIndicator />
-      </View>
-    );
+    return <Loader />;
   }
   return (
     <View>
