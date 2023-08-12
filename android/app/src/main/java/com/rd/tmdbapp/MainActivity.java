@@ -1,4 +1,4 @@
-package com.movieapp;
+package com.rd.tmdbapp;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "movieApp";
+    return "RD_TMDB";
   }
 }
