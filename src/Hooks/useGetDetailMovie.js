@@ -11,15 +11,9 @@ const useGetDetailMovie = movieId => {
     GET(`/movie/${movieId}`)
       .then(data => {
         setDetails(data);
-        setTimeout(() => {
-          setLoading(false);
-        }, 250);
+        setLoading(false);
       })
-      .catch(() =>
-        setTimeout(() => {
-          setLoading(false);
-        }, 250),
-      );
+      .catch(() => setLoading(false));
   }, [movieId]);
 
   return [details, loading];

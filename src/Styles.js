@@ -1,8 +1,8 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import Constants from './Constants';
 
-const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
+export const deviceHeight = Dimensions.get('window').height;
+export const deviceWidth = Dimensions.get('window').width;
 
 const Styles = StyleSheet.create({
   sectionBg: {
@@ -33,6 +33,13 @@ const Styles = StyleSheet.create({
     height: 250,
     width: 150,
     borderRadius: 10,
+  },
+  listImage: {
+    height: 250,
+    width: deviceWidth * 0.5,
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
+    margin: -12,
   },
   movieTitle: {
     color: Constants.textColor,
@@ -93,6 +100,15 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
+  },
+  containerListMovie: {
+    marginHorizontal: 10,
+    flexDirection: 'row',
+    marginVertical: 8,
+    borderWidth: 1,
+    paddingVertical: 12,
+    borderRadius: 12,
+    borderColor: Constants.textColor,
   },
 });
 

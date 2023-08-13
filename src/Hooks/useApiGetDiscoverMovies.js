@@ -22,14 +22,10 @@ const useApiGetDiscoverMovies = () => {
         }
 
         setImages(backImages);
-        setTimeout(() => {
-          setIsMovieFetching(false);
-        }, 2000);
+        setIsMovieFetching(false);
       })
       .catch(err => {
-        setTimeout(() => {
-          setIsMovieFetching(false);
-        }, 2000);
+        setIsMovieFetching(false);
         console.log('err', JSON.stringify(err));
       });
   }, []);

@@ -1,9 +1,10 @@
 // @ts-nocheck
-import {useGetTrendingMovies} from '@hooks/useGetTrendingMovies';
+
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import Styles from '../Styles';
 import Loader from './Loader';
 import React from 'react';
+import {useGetTrendingMovies} from '../hooks/useGetTrendingMovies';
 const TrendingMovies = props => {
   const [movies, loading] = useGetTrendingMovies();
 
@@ -16,15 +17,13 @@ const TrendingMovies = props => {
   }
   return (
     <View>
-      <View>
-        <Text style={Styles.heading}>{props.title}</Text>
-        <FlatList
-          keyExtractor={item => item.id}
-          data={movies}
-          horizontal
-          renderItem={item => displayMovies(item, props)}
-        />
-      </View>
+      <Text style={Styles.heading}>{props.title}</Text>
+      <FlatList
+        keyExtractor={item => item.id}
+        data={movies}
+        horizontal
+        renderItem={item => displayMovies(item, props)}
+      />
     </View>
   );
 };

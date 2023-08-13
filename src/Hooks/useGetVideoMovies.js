@@ -11,14 +11,10 @@ export const useGetVideoMovies = movieId => {
       .then(async response => {
         await response.results?.filter(data => data.official === true);
         setvideo(response?.results[response?.results.length - 1]);
-        setTimeout(() => {
-          setloading(false);
-        }, 2000);
+        setloading(false);
       })
       .catch(err => {
-        setTimeout(() => {
-          setloading(false);
-        }, 2000);
+        setloading(false);
         console.log('err', JSON.stringify(err));
       });
   }, [movieId]);

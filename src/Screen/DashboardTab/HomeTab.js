@@ -1,18 +1,19 @@
 import React, {useEffect} from 'react';
 import {ScrollView, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import DiscoverMovies from '../Components/DiscoverMovies';
-import TrendingMovies from '../Components/TrendingMovies';
-import TrendingPeople from '../Components/TrendingPeople';
-import Constants from '../Constants';
-import Styles from '../Styles';
+import DiscoverMovies from '../../Components/DiscoverMovies';
+import TrendingMovies from '../../Components/TrendingMovies';
+import TrendingPeople from '../../Components/TrendingPeople';
+import Constants from '../../Constants';
+import Styles from '../../Styles';
+import Header from '../../Components/Header';
 
-const Home = props => {
+const HomeScreen = props => {
   const {navigation} = props;
 
   useEffect(() => {
     navigation?.setOptions({
-      title: 'Movies',
+      // title: 'Movies',
       headerStyle: {backgroundColor: Constants.baseColor},
       headerTitleStyle: {color: Constants.textColor},
       headerRight: () => (
@@ -24,6 +25,7 @@ const Home = props => {
   return (
     <ScrollView>
       <View style={Styles.sectionBg}>
+        <Header title={'Dashboard Home'} />
         <DiscoverMovies {...props} />
         <TrendingPeople title="Trending People" />
         <TrendingMovies title="Trending Movies" {...props} />
@@ -32,4 +34,4 @@ const Home = props => {
   );
 };
 
-export default Home;
+export default HomeScreen;

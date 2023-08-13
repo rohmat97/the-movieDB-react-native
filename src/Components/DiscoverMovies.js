@@ -14,6 +14,8 @@ const DiscoverMovies = props => {
   return (
     <View>
       <SliderBox
+        autoplay
+        autoplayInterval={5000}
         images={images}
         dotColor={Constants.secondaryColor}
         onCurrentImagePressed={index =>

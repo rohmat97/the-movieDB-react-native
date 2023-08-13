@@ -10,15 +10,9 @@ export const useGetTrendingMovies = () => {
     GET('/movie/top_rated')
       .then(data => {
         setMovies(data.results || []);
-        setTimeout(() => {
-          setLoading(false);
-        }, 250);
+        setLoading(false);
       })
-      .catch(() =>
-        setTimeout(() => {
-          setLoading(false);
-        }, 250),
-      );
+      .catch(() => setLoading(false));
   }, []);
 
   return [movies, loading];

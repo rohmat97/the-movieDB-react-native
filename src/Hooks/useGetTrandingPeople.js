@@ -11,14 +11,10 @@ export const useGetTrandingPeople = props => {
     GET(uri)
       .then(data => {
         setPeople(isForPage === 'details' ? data.cast : data.results);
-        setTimeout(() => {
-          setLoading(false);
-        }, 250);
+        setLoading(false);
       })
       .catch(() => {
-        setTimeout(() => {
-          setLoading(false);
-        }, 250);
+        setLoading(false);
       });
   }, [isForPage, uri]);
 

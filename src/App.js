@@ -1,8 +1,9 @@
+// @ts-nocheck
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from './Screen/Home';
-import MovieDetails from './Screen/MovieDetails';
+import MovieDetails from '@Screen/MovieDetails';
+import DashboardMovies from '@Screen/DashboardMovies';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -10,9 +11,9 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
         <Stack.Screen
-          name="Home"
-          component={Home}
-          // options={{headerShown: false}}
+          name="Dashboard Movies"
+          component={DashboardMovies}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="movieDetails"
