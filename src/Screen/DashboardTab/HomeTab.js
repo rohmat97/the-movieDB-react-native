@@ -25,7 +25,10 @@ const HomeScreen = props => {
   return (
     <ScrollView>
       <View style={Styles.sectionBg}>
-        <Header title={'Dashboard Home'} />
+        <Header
+          title={'Dashboard Home'}
+          Action={() => navigation.navigate('search-movie')}
+        />
         <DiscoverMovies {...props} />
         <TrendingPeople title="Trending People" />
         <TrendingMovies title="Trending Movies" {...props} />

@@ -20,7 +20,7 @@ const DiscoverMovies = props => {
         dotColor={Constants.secondaryColor}
         onCurrentImagePressed={index =>
           movies &&
-          props.navigation.navigate('movieDetails', {
+          props.navigation.navigate('movie-details', {
             movieId: movies[index].id,
           })
         }

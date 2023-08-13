@@ -1,13 +1,15 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Constants from '../Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Header = ({title}) => {
+const Header = ({title, Action}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>{title}</Text>
-      <Icon name="search" size={25} color={Constants.textColor} />
+      <TouchableOpacity onPress={Action}>
+        <Icon name="search" size={25} color={Constants.textColor} />
+      </TouchableOpacity>
     </View>
   );
 };

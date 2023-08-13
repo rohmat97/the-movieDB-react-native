@@ -1,17 +1,29 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/react-in-jsx-scope */
 // @ts-nocheck
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, TouchableOpacity, View, Image, Text} from 'react-native';
-import Styles, {deviceWidth} from '../../Styles';
-import Header from '../../Components/Header';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {Button, Searchbar} from 'react-native-paper';
+import Loader from '../Components/Loader';
+import Styles, {deviceWidth} from '../Styles';
+import {useFindMovie} from '../hooks/useFindMovie';
 import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
-import Loader from '../../Components/Loader';
-import {useGetPopular} from '../../hooks/useGetPopular';
+import Constants from '../Constants';
 
-const PopularScreen = props => {
+import Icon from 'react-native-vector-icons/Entypo';
+const SearchScreen = props => {
   const {navigation} = props;
   const [listMovie, setlistMovie] = useState([]);
-  const [popular, loadingPopular, setpage, refetch, setrefetch] =
-    useGetPopular();
+  const [searchKey, setsearchKey] = useState('');
+  const [findMovie, loadingFindMovie, setpage, refetch, setrefetch, setquery] =
+    useFindMovie();
 
   const displayMovies = useCallback(
     ({item}) => {
@@ -25,7 +37,9 @@ const PopularScreen = props => {
           }}>
           <View style={Styles.containerListMovie}>
             <Image
-              source={{uri: `${process.env.POSTER_IMAGE}${item?.poster_path}`}}
+              source={{
+                uri: `${process.env.POSTER_IMAGE}${item?.poster_path}`,
+              }}
               style={Styles.listImage}
               resizeMode="contain"
             />
@@ -71,12 +85,29 @@ const PopularScreen = props => {
   );
 
   useEffect(() => {
-    if (popular) {
-      setlistMovie(listMovie.concat(popular?.results));
+    if (findMovie) {
+      setlistMovie(listMovie.concat(findMovie?.results));
     }
-  }, [popular]);
+  }, [findMovie]);
 
-  if (loadingPopular) {
+  useEffect(() => {
+    navigation?.setOptions({
+      title: 'Find Your Favorite Movie',
+      headerStyle: {
+        backgroundColor: Constants.baseColor,
+      },
+      headerTitleStyle: {color: Constants.textColor},
+      headerLeft: () => (
+        <TouchableOpacity
+          onPress={navigation?.goBack}
+          style={{marginRight: 12}}>
+          <Icon name="back" size={34} color={Constants.textColor} />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
+
+  if (loadingFindMovie) {
     return (
       <View style={Styles.sectionBg}>
         <Loader />
@@ -85,10 +116,25 @@ const PopularScreen = props => {
   }
   return (
     <View style={Styles.sectionBg}>
-      <Header
-        title={'Popular'}
-        Action={() => navigation.navigate('search-movie')}
-      />
+      <View style={{flexDirection: 'row'}}>
+        <Searchbar
+          placeholder="Search"
+          onChangeText={setsearchKey}
+          value={searchKey}
+          style={{margin: 12, flex: 1}}
+          onClearIconPress={() => {
+            setquery('');
+            setlistMovie([]);
+          }}
+        />
+        <Button
+          mode="contained"
+          onPress={() => setquery(searchKey)}
+          style={{alignSelf: 'center'}}>
+          Search
+        </Button>
+      </View>
+
       {refetch && <Loader />}
       <FlatList
         keyExtractor={item => item?.id}
@@ -99,9 +145,9 @@ const PopularScreen = props => {
         contentContainerStyle={{paddingBottom: 100}}
         onEndReached={() => {
           console.log('reached out');
-          if (popular.page < popular.total_pages) {
+          if (findMovie.page < findMovie.total_pages) {
             setrefetch(true);
-            setpage(popular.page + 1);
+            setpage(findMovie.page + 1);
           }
         }}
         renderToHardwareTextureAndroid
@@ -112,4 +158,6 @@ const PopularScreen = props => {
   );
 };
 
-export default PopularScreen;
+export default SearchScreen;
+
+const styles = StyleSheet.create({});

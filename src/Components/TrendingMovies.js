@@ -32,7 +32,7 @@ const displayMovies = ({item}, props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        props.navigation.push('movieDetails', {movieId: item.id});
+        props.navigation.push('movie-details', {movieId: item.id});
       }}
       style={{marginHorizontal: 10}}>
       <Image

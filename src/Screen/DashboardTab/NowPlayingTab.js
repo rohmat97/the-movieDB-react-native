@@ -21,7 +21,7 @@ const NowPlayingScreen = props => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.push('movieDetails', {movieId: item?.id});
+          navigation.push('movie-details', {movieId: item?.id});
         }}>
         <View style={Styles.containerListMovie}>
           <Image
@@ -83,7 +83,10 @@ const NowPlayingScreen = props => {
   }
   return (
     <View style={Styles.sectionBg}>
-      <Header title={'Now Playing'} />
+      <Header
+        title={'Now Playing'}
+        Action={() => navigation.navigate('search-movie')}
+      />
       {refetch && <Loader />}
       <FlatList
         keyExtractor={item => item?.id}
