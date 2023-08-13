@@ -2,8 +2,6 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './Screen/Home';
-import Constants from './Constants';
-import Icon from 'react-native-vector-icons/Ionicons';
 import MovieDetails from './Screen/MovieDetails';
 const Stack = createNativeStackNavigator();
 

@@ -15,7 +15,6 @@ const Home = props => {
       title: 'Movies',
       headerStyle: {backgroundColor: Constants.baseColor},
       headerTitleStyle: {color: Constants.textColor},
-
       headerRight: () => (
         <Icon name="search" size={25} color={Constants.textColor} />
       ),

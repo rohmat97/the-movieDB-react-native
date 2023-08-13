@@ -55,8 +55,9 @@ const Styles = StyleSheet.create({
     borderRadius: 100,
     padding: 10,
     width: 45,
-    marginLeft: 20,
-    marginTop: -20,
+    position: 'absolute',
+    top: 12,
+    right: 12,
   },
   overview: {
     color: Constants.textColor,
@@ -74,7 +75,7 @@ const Styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 20,
+    // marginVertical: 20,
   },
   genreContainer: {
     borderWidth: 1,
@@ -87,6 +88,11 @@ const Styles = StyleSheet.create({
   genre: {
     color: Constants.textColor,
     fontSize: 16,
+  },
+  containerRatings: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
   },
 });
 
